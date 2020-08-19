@@ -1,2 +1,4 @@
+# ignore PyCharm artifacts
 .idea/
 venv/
+__pycache__/
