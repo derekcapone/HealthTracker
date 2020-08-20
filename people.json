@@ -1,0 +1,13 @@
+{
+  "people": {
+    "Farrell": {
+      "fname": "Doug",
+      "lname": "Farrell"},
+    "Brockman": {
+      "fname": "Kent",
+      "lname": "Brockman"},
+    "Easter": {
+      "fname": "Bunny",
+      "lname": "Easter"}
+  }
+}

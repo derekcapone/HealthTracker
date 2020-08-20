@@ -19,8 +19,6 @@ definitions:
             type: "string"
           lname:
             type: "string"
-          timestamp:
-            type: "string"
 
 
 # Paths supported by the server application
@@ -37,3 +35,10 @@ paths:
           description: "Successful read people list operation"
           schema:
             $ref: '#/definitions/peopleElement'
+
+    #post:
+      #operationId: "route_handler.add_person"
+      #tags:
+      #  - "People"
+      #summary: "The people data structure supported by the server application"
+      #description: "Add person to the list of people"
