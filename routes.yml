@@ -36,9 +36,23 @@ paths:
           schema:
             $ref: '#/definitions/peopleElement'
 
-    #post:
-      #operationId: "route_handler.add_person"
-      #tags:
-      #  - "People"
-      #summary: "The people data structure supported by the server application"
-      #description: "Add person to the list of people"
+    post:
+      operationId: "route_handler.add_person"
+      tags:
+        - "People"
+      summary: "The people data structure supported by the server application"
+      description: "Add person to the list of people"
+      parameters:
+        - name: lname
+          in: query
+          type: string
+          required: True
+        - name: fname
+          in: query
+          type: string
+          required: True
+      responses:
+        200:
+          description: "Successful add people list operation"
+          schema:
+            type: string
