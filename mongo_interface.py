@@ -58,6 +58,18 @@ def find_top_layer_obj(collection, obj_name):
     return list(collection.find(search_dic))
 
 
+def find_populated_field(collection, field, value):
+    """
+    Searches for a desired populated field, given field name, and value
+    :param collection: MongoDB Collection object to search
+    :param field: String containing name of the field
+    :param value: String containing value populated in field
+    :return: List of all matching objects
+    """
+    search_dic = {field: value}
+    return list(collection.find(search_dic))
+
+
 def insert_document(collection, new_dict):
     """
     Inserts a single document into the collection provided
@@ -71,6 +83,6 @@ def insert_document(collection, new_dict):
 if __name__ == "__main__":
     col = connect_to_collection("PeopleData")
 
-    dicti = find_top_layer_obj(col, "name")
+    found_doc = find_populated_field(col, "name", "Peter")
 
-    print(dicti)
+    print(found_doc)

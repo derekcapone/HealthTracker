@@ -1,6 +1,5 @@
 from datetime import datetime
 import json
-import mongo_interface
 
 
 def get_timestamp():
