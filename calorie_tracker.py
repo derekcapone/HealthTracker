@@ -1,7 +1,7 @@
 from datetime import datetime
 import mongo_interface as mng
 
-def get_datestamp():
+def get_current_datestamp():
     """
     Get current datestamp
     :return: String  of current date in YYYY-MM-DD format
@@ -27,9 +27,29 @@ def get_person_calories(name):
     return cal_data
 
 
+def update_person_calories(name, calories, datestamp=None):
+    """
+    Updates the calories for a person on a given day
+    :param name: Name of person in database to update
+    :param calories: Number of calories to log for given date
+    :param datestamp: datestamp of date to add calories (format: YYYY-MM-DD)
+    """
+    # if date isn't specified, log for today
+    if datestamp is None:
+        datestamp = get_current_datestamp()
+
+    # connect to collection
+    col = mng.connect_to_collection("PeopleData")
+
+    # set up queries
+    name_query = {"name": name}
+    calstring = "Calories.{}".format(datestamp)
+    newvalues = {"$set": {calstring: calories}}
+
+    # update document in collection
+    col.update_one(name_query, newvalues)
+
+
 if __name__ == "__main__":
-    formatted_date = get_datestamp()
+    update_person_calories("Peter", 542156)
 
-    cal_d = get_person_calories("Peter")
-
-    print(cal_d)
