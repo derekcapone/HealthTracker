@@ -51,5 +51,7 @@ def update_person_calories(name, calories, datestamp=None):
 
 
 if __name__ == "__main__":
-    update_person_calories("Peter", 542156)
+    update_person_calories("Peter", 82095, "2020-08-23")
+
+    #TODO: sort calories object in ascending order (maybe aggregate with MongoDB)
 
