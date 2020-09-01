@@ -9,6 +9,15 @@ def get_current_datestamp():
     return datetime.now().strftime("%Y-%m-%d")
 
 
+def valid_datestamp(datestring):
+    try:
+        datetime.strptime(datestring, "%Y-%m-%d")
+    except ValueError:
+        return False
+
+    return True
+
+
 def get_person_calories(name):
     """
     Gets calorie data for the given person
@@ -37,6 +46,9 @@ def update_person_calories(name, calories, datestamp=None):
     # if date isn't specified, log for today
     if datestamp is None:
         datestamp = get_current_datestamp()
+    else:
+        if not valid_datestamp(datestamp):
+            return "Unsuccessful"  #TODO: handle errors better
 
     # connect to collection
     col = mng.connect_to_collection("PeopleData")
@@ -49,9 +61,10 @@ def update_person_calories(name, calories, datestamp=None):
     # update document in collection
     col.update_one(name_query, newvalues)
 
+    return "Successfully updated calories"  #TODO: handle this better
+
 
 if __name__ == "__main__":
-    update_person_calories("Peter", 82095, "2020-08-23")
+    res_str = update_person_calories("DerekCapone", 2000, "2020-11-27")
 
-    #TODO: sort calories object in ascending order (maybe aggregate with MongoDB)
-
+    print(res_str)

@@ -56,3 +56,27 @@ paths:
           description: "Successful add people list operation"
           schema:
             type: string
+
+  /update_cals:
+    post:
+      operationId: "calorie_tracker.update_person_calories"
+      summary: "The people data structure supported by the server application"
+      description: "Add person to the list of people"
+      parameters:
+        - name: datestamp
+          in: query
+          type: string
+          required: False
+        - name: calories
+          in: query
+          type: integer
+          required: True
+        - name: name
+          in: query
+          type: string
+          required: True
+      responses:
+        200:
+          description: "Successful calorie update"
+          schema:
+            type: string
